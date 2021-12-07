@@ -1,0 +1,24 @@
+{
+  "name": "ideal-spork",
+  "version": "1.0.0",
+  "description": "An application build in node, ejs, and sequelize",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Xebec19/ideal-spork.git"
+  },
+  "keywords": [
+    "node",
+    "ejs",
+    "sequelize"
+  ],
+  "author": "xebec19",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xebec19/ideal-spork/issues"
+  },
+  "homepage": "https://github.com/Xebec19/ideal-spork#readme"
+}
