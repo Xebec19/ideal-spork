@@ -4,7 +4,9 @@ const route = express.Router();
 
 route.get("/login", (req, res, next) => {
   try {
-    res.render("login").end();
+    console.log("display login");
+    res.render("login");
+    return;
   } catch (error) {
     next(error);
   }
