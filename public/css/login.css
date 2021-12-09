@@ -1,9 +1,0 @@
-.wrapper {
-  padding: 2rem 4rem;
-}
-.card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
