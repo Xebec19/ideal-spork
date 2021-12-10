@@ -9,3 +9,4 @@ export const dbDatabase = process.env.DB_DATABASE;
 export const dbPort = process.env.DB_PORT;
 export const dbPassword = process.env.DB_PASSWORD;
 export const jwtSecret = process.env.JWT_SECRET;
+export const appTitle = process.env.APP_TITLE;

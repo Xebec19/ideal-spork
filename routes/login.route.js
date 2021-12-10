@@ -1,8 +1,8 @@
 import express from "express";
-import { body } from "express-validator";
+import { body, validationResult } from "express-validator";
 const route = express.Router();
 
-route.get("/login", (req, res, next) => {
+route.all("/login", (req, res, next) => {
   try {
     res.render("login");
     return;
@@ -12,7 +12,7 @@ route.get("/login", (req, res, next) => {
 });
 
 route.post(
-  "/login",
+  "/check-user",
   body("email").notEmpty().isEmail(),
   body("password").notEmpty().isString(),
   (req, res, next) => {
@@ -21,6 +21,9 @@ route.post(
       if (!errors.isEmpty()) {
         throw new Error("Invalid parameters");
       }
+      const { email, password } = req.body;
+      res.status(201).json({ message: "Hello" }).end();
+      return;
     } catch (error) {
       next(error);
     }

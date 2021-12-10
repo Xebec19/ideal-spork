@@ -1,0 +1,58 @@
+body {
+  margin: 0px auto;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: -2px 0px 5px 5px rgb(0, 0, 0, 0.1),
+    5px 5px 5px 5px rgb(0, 0, 0, 0.1);
+  padding: 2rem 4rem;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 1px solid dodgerblue;
+  padding: 0.5rem;
+}
+input:focus {
+  border-radius: 21px;
+  border: 0px;
+}
+footer {
+  position: fixed;
+  bottom: 0px;
+}
+header {
+  width: 100%;
+  background-color: dodgerblue;
+  padding: 2rem 0rem;
+  display: flex;
+  justify-content: space-around;
+}
+footer {
+  padding: 1rem;
+  background-color: dodgerblue;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.submit {
+  border: 0px;
+  border-radius: 21px;
+  color: white;
+  background-color: dodgerblue;
+}
+.submit:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}

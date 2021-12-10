@@ -1,5 +1,4 @@
 import { Sequelize } from "sequelize";
-import { noExtendLeft } from "sequelize/dist/lib/operators";
 import {
   dbUser,
   dbHost,
@@ -22,3 +21,5 @@ sequelize
     console.error("Error while connecting to database");
     console.error(_error);
   });
+
+export default sequelize;

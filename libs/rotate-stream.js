@@ -5,11 +5,11 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const stream = rfs.createStream("server.log", {
+const stream = rfs.createStream("../server.log", {
   size: "10M", // rotate every 10 MegaBytes written
   interval: "1d", // rotate daily
   compress: "gzip", // compress rotated files
-  path: path.join(__dirname, "log"),
+  path: path.join(__dirname, "../log"),
 });
 
 export default stream;

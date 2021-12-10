@@ -3,6 +3,7 @@
 import express from "express";
 import expressEjsLayouts from "express-ejs-layouts";
 import morgan from "morgan";
+import { appTitle } from "./libs/environment.js";
 
 import stream from "./libs/rotate-stream.js";
 import authRoutes from "./routes/login.route.js";
@@ -25,15 +26,13 @@ app.use(
   })
 );
 
+app.locals.title = appTitle;
+
 app.get("", (req, res) => {
-  res.redirect("/auth/login");
+  res.redirect("/views/login");
 });
 
 app.use("/auth", authRoutes);
-
-// app.get("/about", (req, res) => {
-//   res.render("about", { title: "About Page", layout: "./layouts/sidebar" });
-// });
 
 app.use((err, req, res, next) => {
   console.error("\x1b[33m%s\x1b[0m", "error");

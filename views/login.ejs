@@ -1,10 +1,11 @@
 <div class="wrapper">
   <div class="card">
-    <form action="" method="post">
+    <form action="/auth/check-user" method="post">
       <label for="email">Email</label>
-      <input type="text" id="email" />
+      <input type="text" name="email" id="email" />
       <label for="password">Password</label>
-      <input type="password" id="password" />
+      <input type="password" name="password" id="password" />
+      <input type="submit" class="submit">
     </form>
   </div>
 </div>
