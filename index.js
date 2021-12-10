@@ -2,6 +2,9 @@
 // const expressLayouts = require("express-ejs-layouts");
 import express from "express";
 import expressEjsLayouts from "express-ejs-layouts";
+import morgan from "morgan";
+
+import stream from "./libs/rotate-stream.js";
 import authRoutes from "./routes/login.route.js";
 
 const app = express();
@@ -11,6 +14,16 @@ app.use(express.static("public"));
 app.use(expressEjsLayouts);
 app.set("layout", "./layouts/full-width");
 app.set("view engine", "ejs");
+
+// logger setup
+app.use(
+  morgan("combined", {
+    stream,
+    skip: (req, res) => {
+      return res.statusCode < 400;
+    },
+  })
+);
 
 app.get("", (req, res) => {
   res.redirect("/auth/login");
