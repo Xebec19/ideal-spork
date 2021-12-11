@@ -22,6 +22,7 @@ route.post(
         throw new Error("Invalid parameters");
       }
       const { email, password } = req.body;
+      
       res.status(201).json({ message: "Hello" }).end();
       return;
     } catch (error) {

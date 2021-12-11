@@ -7,9 +7,11 @@ import {
   dbPassword,
   jwtSecret,
 } from "./environment";
+import logger from "./logger";
 const sequelize = new Sequelize(dbDatabase, dbUser, dbPassword, {
   host: dbHost,
   dialect: "postgres",
+  logging: msg => logger.info(msg)
 });
 
 sequelize
