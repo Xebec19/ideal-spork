@@ -1,9 +1,8 @@
-// const express = require("express");
-// const expressLayouts = require("express-ejs-layouts");
 import express from "express";
 import expressEjsLayouts from "express-ejs-layouts";
 import morgan from "morgan";
 import { appTitle } from "./libs/environment.js";
+import logger from "./libs/logger.js";
 
 import stream from "./libs/rotate-stream.js";
 import authRoutes from "./routes/login.route.js";
@@ -35,9 +34,8 @@ app.get("", (req, res) => {
 app.use("/auth", authRoutes);
 
 app.use((err, req, res, next) => {
-  console.error("\x1b[33m%s\x1b[0m", "error");
-  console.error(err.stack);
+  logger.error(err.stack);
   res.status(501).send("Internal error");
 });
 
-app.listen(port, () => console.log("App listening on port ", port));
+app.listen(port, () => logger.info("App listening on port ", port));
