@@ -9,7 +9,10 @@
     "start": "DEBUG=express:* node index.js",
     "lint": "eslint --ext .js",
     "lint-fix": "eslint --fix --ext .js",
-    "pretty": "prettier --write './**/*.js'"
+    "pretty": "prettier --write './**/*.js'",
+    "prepare": "husky install",
+    "precommit": "npm run lint-fix && npm run pretty",
+    "prepush": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -43,6 +46,7 @@
     "eslint-config-airbnb": "^19.0.2",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
     "prettier": "^2.5.1"
   }
 }
