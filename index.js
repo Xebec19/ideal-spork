@@ -7,6 +7,7 @@ import cors from "cors";
 import stream from "./libs/rotate-stream.js";
 import authRoutes from "./routes/login.route.js";
 import { statusCodes } from "./utils/status-codes.utils.js";
+import compression from "compression";
 import debug from "debug";
 
 const app = express();
@@ -30,6 +31,8 @@ app.use(
     },
   })
 );
+
+app.use(compression())
 
 app.locals.title = appTitle;
 
