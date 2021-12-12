@@ -4,10 +4,6 @@ const { DataTypes } = pkg;
 const User = sequelize.define(
   "User",
   {
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     first_name: {
       type: DataTypes.STRING,
       allowNull: false,

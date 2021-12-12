@@ -1,10 +1,16 @@
 import winston from "winston";
 
 const logger = winston.createLogger({
-  level: "error",
+  level: "info",
   format: winston.format.json(),
-  defaultMeta: { service: "error-service" },
-  transports: [new winston.transports.File({ filename: "./log/error.log" })],
+  defaultMeta: { service: "logger-service" },
+  transports: [
+    new winston.transports.File({
+      filename: "./log/error.log",
+      level: "error",
+    }),
+    new winston.transports.Console(),
+  ],
 });
 
 if (process.env.NODE_ENV !== "production") {
