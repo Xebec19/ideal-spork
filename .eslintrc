@@ -1,7 +1,9 @@
 {
   "root": true,
-  "extends": ["airbnb/base", "eslint:recommended"],
+  "extends": ["airbnb/base", "eslint:recommended","prettier"],
+  "plugins":["prettier"],
   "rules": {
+    "prettier/prettier": ["error"],
     "semi": ["error", "always"],
     "object-curly-spacing": ["error", "always"],
     "camelcase": "off",
