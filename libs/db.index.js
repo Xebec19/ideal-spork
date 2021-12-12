@@ -6,8 +6,8 @@ import {
   dbPort,
   dbPassword,
   jwtSecret,
-} from "./environment";
-import logger from "./logger";
+} from "./environment.js";
+import logger from "./logger.js";
 const sequelize = new Sequelize(dbDatabase, dbUser, dbPassword, {
   host: dbHost,
   dialect: "postgres",

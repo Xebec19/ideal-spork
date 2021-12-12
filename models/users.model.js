@@ -1,11 +1,12 @@
-import sequelize from "../libs/db.index";
-import { DataTypes } from "sequelize";
+import sequelize from "../libs/db.index.js";
+import pkg from "sequelize";
+const { DataTypes } = pkg;
 const User = sequelize.define(
   "User",
   {
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: flase,
+      allowNull: false,
     },
     first_name: {
       type: DataTypes.STRING,
@@ -45,6 +46,8 @@ const User = sequelize.define(
     timestamps: true,
     createdAt: "created_on",
     updatedAt: "updated_on",
-    indexes: "user_id",
+    // indexes: "user_id",
   }
 );
+
+export default User;
