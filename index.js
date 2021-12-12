@@ -40,6 +40,10 @@ app.get("", (req, res) => {
 app.use("/auth", authRoutes);
 
 app.use((err, req, res, next) => {
+  const timestamp = new Date();
+  logger.error(
+    `${timestamp.getDate()} ${timestamp.getMonth() + 1} ${timestamp.getFullYear()}`
+  );
   logger.error(err.stack);
   res.status(statusCodes["Internal Server Error"]).send("Internal error");
 });
