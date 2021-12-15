@@ -1,8 +1,8 @@
-import User from "../models/users.model.js";
-import { validationResult } from "express-validator";
-import bcrypt from "bcryptjs";
-import { statusCodes } from "../utils/status-codes.utils.js";
-export const login = async (req, res, next) => {
+const User = require("../models/users.model.js");
+const { validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
+const { statusCodes } = require("../utils/status-codes.utils.js");
+const login = async (req, res, next) => {
   try {
     console.log(req.body);
     const errors = validationResult(req);
@@ -40,3 +40,5 @@ export const login = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports = login;

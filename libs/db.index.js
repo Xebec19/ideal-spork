@@ -1,13 +1,13 @@
-import { Sequelize } from "sequelize";
-import {
+const { Sequelize } = require("sequelize");
+const {
   dbUser,
   dbHost,
   dbDatabase,
   dbPort,
   dbPassword,
   jwtSecret,
-} from "./environment.js";
-import logger from "./logger.js";
+} = require("./environment.js");
+const logger = require("./logger.js");
 const sequelize = new Sequelize(dbDatabase, dbUser, dbPassword, {
   host: dbHost,
   dialect: "postgres",
@@ -24,4 +24,4 @@ sequelize
     console.error(_error);
   });
 
-export default sequelize;
+module.exports = sequelize;

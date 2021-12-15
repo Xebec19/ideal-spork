@@ -1,32 +1,35 @@
-import express from "express";
-import expressEjsLayouts from "express-ejs-layouts";
-import morgan from "morgan";
-import { appTitle } from "./libs/environment.js";
-import logger from "./libs/logger.js";
-import cors from "cors";
-import stream from "./libs/rotate-stream.js";
-import authRoutes from "./routes/login.route.js";
-import { statusCodes } from "./utils/status-codes.utils.js";
-import compression from "compression";
-import helmet from "helmet";
-import debug from "debug";
-import expressValidator from 'express-validator'
-import expressSession from 'express-session'
-import cookieParser from "cookie-parser";
-import * as sesspkg from 'connect-pg-simple';
+const express = require( "express");
+const expressEjsLayouts = require( "express-ejs-layouts");
+const morgan = require( "morgan");
+const { appTitle } = require( "./libs/environment.js");
+const logger = require( "./libs/logger.js");
+const cors = require( "cors");
+const stream = require( "./libs/rotate-stream.js");
+const authRoutes = require( "./routes/login.route.js");
+const { statusCodes } = require( "./utils/status-codes.utils.js");
+const compression = require( "compression");
+const helmet = require( "helmet");
+const debug = require( "debug");
+const expressSession = require( 'express-session');
+const cookieParser = require( "cookie-parser");
+var SequelizeStore = require("connect-session-sequelize")(expressSession.Store);
+const sequelize = require( "./libs/db.index.js");
+// const express = require('express'),
+// expressEjsLayouts = require('express-ejs-layouts'),
+// morgan = require('morgon'),
+// appTitle = require('./libs/environment.js')
 
 const app = express();
 const port = 5000;
-export const _debug = debug("server"); // FIXME
 
 const sess = {
   secret: 's3cret',
   cookie:{},
   saveUninitialized:false,
   resave:false,
-  // store: new (sesspkg(session))({
-  //   // Insert connect-pg-simple options here
-  // }),
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
 }
 if (app.get('env') === 'production') {
   app.set('trust proxy', 1) // trust first proxy
@@ -42,8 +45,7 @@ app.use(expressEjsLayouts);
 app.set("layout", "./layouts/full-width");
 app.set("view engine", "ejs");
 app.use(cookieParser());
-app.use(expressValidator());
-app.use(expressSession(sess))
+app.use(expressSession(sess));
 // logger setup
 app.use(
   morgan("combined", {

@@ -1,4 +1,4 @@
-export const statusCodes = {
+const statusCodes = {
   "Bad Request": 400,
   Unauthorized: 401,
   "Payment Required": 402,
@@ -40,3 +40,4 @@ export const statusCodes = {
   "IM Used": 226,
   "Internal Server Error": 501
 };
+module.exports = statusCodes;

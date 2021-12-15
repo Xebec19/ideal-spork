@@ -1,6 +1,6 @@
-import express from "express";
-import { body, validationResult } from "express-validator";
-import { login } from "../controllers/login.controllers.js";
+const express = require("express");
+const { body } = require("express-validator");
+const { login } = require("../controllers/login.controllers.js");
 const route = express.Router();
 
 route.all("/login", (req, res, next) => {
@@ -19,4 +19,4 @@ route.post(
   (req, res, next) => login(req, res, next)
 );
 
-export default route;
+module.exports = route;

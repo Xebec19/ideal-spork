@@ -1,6 +1,7 @@
-import sequelize from "../libs/db.index.js";
-import pkg from "sequelize";
-const { DataTypes } = pkg;
+// import sequelize from "../libs/db.index.js";
+const sequelize = require('../libs/db.index');
+//import pkg from "sequelize";
+const { DataTypes } = require('sequelize');
 const User = sequelize.define(
   "User",
   {
@@ -46,4 +47,4 @@ const User = sequelize.define(
   }
 );
 
-export default User;
+module.exports = User;
