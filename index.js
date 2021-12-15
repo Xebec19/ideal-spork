@@ -14,10 +14,6 @@ const expressSession = require( 'express-session');
 const cookieParser = require( "cookie-parser");
 var SequelizeStore = require("connect-session-sequelize")(expressSession.Store);
 const sequelize = require( "./libs/db.index.js");
-// const express = require('express'),
-// expressEjsLayouts = require('express-ejs-layouts'),
-// morgan = require('morgon'),
-// appTitle = require('./libs/environment.js')
 
 const app = express();
 const port = 5000;
@@ -35,7 +31,6 @@ if (app.get('env') === 'production') {
   app.set('trust proxy', 1) // trust first proxy
   sess.cookie.secure = true // serve secure cookies
 }
-
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

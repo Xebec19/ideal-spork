@@ -1,6 +1,6 @@
 const express = require("express");
 const { body } = require("express-validator");
-const { login } = require("../controllers/login.controllers.js");
+const login = require("../controllers/login.controllers.js");
 const route = express.Router();
 
 route.all("/login", (req, res, next) => {

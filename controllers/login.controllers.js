@@ -1,7 +1,7 @@
 const User = require("../models/users.model.js");
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
-const { statusCodes } = require("../utils/status-codes.utils.js");
+const statusCodes = require("../utils/status-codes.utils.js");
 const login = async (req, res, next) => {
   try {
     console.log(req.body);
