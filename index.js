@@ -7,11 +7,8 @@ const cors = require( "cors");
 const stream = require( "./libs/rotate-stream.js");
 const authRoutes = require( "./routes/login.route.js");
 const { statusCodes } = require( "./utils/status-codes.utils.js");
-const compression = require( "compression");
-const helmet = require( "helmet");
 const debug = require( "debug");
 const expressSession = require( 'express-session');
-const cookieParser = require( "cookie-parser");
 var SequelizeStore = require("connect-session-sequelize")(expressSession.Store);
 const sequelize = require( "./libs/db.index.js");
 
@@ -27,10 +24,6 @@ const sess = {
     db: sequelize,
   }),
 }
-if (app.get('env') === 'production') {
-  app.set('trust proxy', 1) // trust first proxy
-  sess.cookie.secure = true // serve secure cookies
-}
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -39,7 +32,6 @@ app.use(express.static("public"));
 app.use(expressEjsLayouts);
 app.set("layout", "./layouts/full-width");
 app.set("view engine", "ejs");
-app.use(cookieParser());
 app.use(expressSession(sess));
 // logger setup
 app.use(
@@ -50,8 +42,6 @@ app.use(
     },
   })
 );
-app.use(compression())
-app.use(helmet());
 
 app.locals.title = appTitle;
 
