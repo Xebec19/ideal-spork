@@ -8,6 +8,19 @@
     <link rel="stylesheet" href='/css/login.css' />
   </head>
   <body>
+    <% 
+    if(typeof errors === 'object' && errors) { 
+      errors = JSON.parse(JSON.stringify(errors))
+      for(var e = 0 ; e < errors.length;e++ )
+      { %>
+      <div class="alert <%= errors[e].type ? errors[e].type == 'success' ? 'alert-success' : 'alert-danger' : 'alert-danger' %> alert-dismissible error-glbl"
+      style="top:<%= e*36 %>px" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+      <%= errors[e]['msg'] %>
+      </div>
+      <% } } %>
     <div>
       <%- include('../partials/header.ejs') %>
       <main><%- body%></main>

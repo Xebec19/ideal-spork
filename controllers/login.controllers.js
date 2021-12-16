@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const statusCodes = require("../utils/status-codes.utils.js");
 const login = async (req, res, next) => {
   try {
-    console.log(req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       throw new Error("Invalid parameters");
