@@ -25,12 +25,12 @@ const login = async (req, res, next) => {
           throw new Error(err);
         }
         if (result) {
-          res.status(statusCodes.OK).json(user).end();
+          req.session.user = user;
+          res.redirect("/user/dashboard");
         } else{
-          res
-            .status(statusCodes["Precondition Failed"])
-            .json({ message: "Invalid password" })
-            .end();
+          // add a redirect here
+          //res.status(statusCodes["Precondition Failed"]).json({ message: "Invalid password" }).end();
+          res.redirect("/auth/login");
         }
       });
     }
