@@ -1,28 +1,31 @@
 const express = require( "express");
 const expressEjsLayouts = require( "express-ejs-layouts");
 const morgan = require( "morgan");
-const { appTitle } = require( "./libs/environment.js");
 const logger = require( "./libs/logger.js");
 const cors = require( "cors");
 const stream = require( "./libs/rotate-stream.js");
-const authRoutes = require( "./routes/login.route.js");
 const { statusCodes } = require( "./utils/status-codes.utils.js");
 const debug = require( "debug");
 const expressSession = require( 'express-session');
 var SequelizeStore = require("connect-session-sequelize")(expressSession.Store);
 const sequelize = require( "./libs/db.index.js");
+const flash = require('req-flash');
+
+const { appTitle,sessionSecret } = require( "./libs/environment.js");
+const authRoutes = require( "./routes/login.route.js");
+const userRoutes = require("./routes/user.route.js");
 
 const app = express();
 const port = 5000;
 
 const sess = {
-  secret: 's3cret',
+  secret: `${sessionSecret}`,
   cookie:{},
   saveUninitialized:false,
   resave:false,
-  store: new SequelizeStore({
-    db: sequelize,
-  }),
+  // store: new SequelizeStore({
+  //   db: sequelize,
+  // }),
 }
 
 app.use(express.urlencoded({ extended: false }));
@@ -33,6 +36,8 @@ app.use(expressEjsLayouts);
 app.set("layout", "./layouts/full-width");
 app.set("view engine", "ejs");
 app.use(expressSession(sess));
+app.use(flash());
+
 // logger setup
 app.use(
   morgan("combined", {
@@ -44,12 +49,13 @@ app.use(
 );
 
 app.locals.title = appTitle;
-
+app.locals.errors = flash;
 app.get("", (req, res) => {
-  res.redirect("/views/login");
+  res.redirect("/auth/login");
 });
 
 app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
 
 app.use((err, req, res, next) => {
   const timestamp = new Date();
@@ -57,7 +63,7 @@ app.use((err, req, res, next) => {
     `${timestamp.getDate()} ${timestamp.getMonth() + 1} ${timestamp.getFullYear()}`
   );
   logger.error(err.stack);
-  res.status(statusCodes["Internal Server Error"]).send("Internal error");
+  res.status(statusCodes["Internal Server Error"]).json({message:'error'}).end();
 });
 
 app.listen(port, () => logger.info("App listening on port ", port));

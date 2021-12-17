@@ -11,5 +11,6 @@ if (dotenv.error) {
  const dbPassword = process.env.DB_PASSWORD;
  const jwtSecret = process.env.JWT_SECRET;
  const appTitle = process.env.APP_TITLE;
+ const sessionSecret = process.env.SESSION_SECRET;
 
  module.exports = {dbUser,dbHost,dbDatabase,dbPort,dbPassword,jwtSecret,appTitle};

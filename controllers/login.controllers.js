@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const statusCodes = require("../utils/status-codes.utils.js");
 const login = async (req, res, next) => {
   try {
-    console.log(req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       throw new Error("Invalid parameters");
@@ -26,12 +25,12 @@ const login = async (req, res, next) => {
           throw new Error(err);
         }
         if (result) {
-          res.status(statusCodes.OK).json(user).end();
+          req.session.user = user;
+          res.redirect("/user/dashboard");
         } else{
-          res
-            .status(statusCodes["Precondition Failed"])
-            .json({ message: "Invalid password" })
-            .end();
+          // add a redirect here
+          //res.status(statusCodes["Precondition Failed"]).json({ message: "Invalid password" }).end();
+          res.redirect("/auth/login");
         }
       });
     }
