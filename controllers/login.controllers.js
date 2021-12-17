@@ -28,8 +28,6 @@ const login = async (req, res, next) => {
           req.session.user = user;
           res.redirect("/user/dashboard");
         } else{
-          // add a redirect here
-          //res.status(statusCodes["Precondition Failed"]).json({ message: "Invalid password" }).end();
           res.redirect("/auth/login");
         }
       });
