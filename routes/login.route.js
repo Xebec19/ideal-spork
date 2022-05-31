@@ -3,9 +3,9 @@ const { body } = require("express-validator");
 const login = require("../controllers/login.controllers.js");
 const route = express.Router();
 
-route.all("/login", (req, res, next) => {
+route.get("/login", (req, res, next) => {
   try {
-    res.render("login");
+    res.render("login",{ styles:[], scripts:[]});
     return;
   } catch (error) {
     next(error);

@@ -5,12 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%-title%></title>
-    <% if(styles.length > 0){ %>
-    <% for(const link of styles) { %>
-      <link rel="stylesheet" href="<%-baseUrlPrefix%>/<%-link%>">
-    <%}%>
-    <%}%>
-    <link rel="stylesheet" href='/css/login.css' />
   </head>
   <body>
     <div>
@@ -18,10 +12,10 @@
       <main><%- body%></main>
       <%- include('../partials/footer.ejs') %>
     </div>
-    <%- if(scripts.length > 0) { %>
-      <%- for(const link of scripts){ %>
-        <script src="<%-baseUrlPrefix%>/<%-link%>"></script>
-      <%}%>
-    <%}%>
+    <% if(scripts.length > 0){ %>
+      <% for(const link in scripts){ %>
+      <script src="<%-baseUrlPrefix%>/<%-link%>"></script>
+      <% } %>
+      <% } %>
   </body>
 </html>
