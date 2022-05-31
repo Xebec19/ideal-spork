@@ -1,5 +1,5 @@
 {
-  "name": "writer",
+  "name": "ideal-spork",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -39,7 +39,6 @@
     "express-session": "^1.17.2",
     "express-validator": "^6.13.0",
     "helmet": "^4.6.0",
-    "i": "^0.3.7",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "npm": "^8.3.0",

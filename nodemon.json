@@ -2,5 +2,5 @@
     "watch":["./"],
     "ext":".js",
     "ignore":[],
-    "exec": "DEBUG=express:* node index.js"
+    "exec": "node index.js"
 }
