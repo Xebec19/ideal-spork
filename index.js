@@ -1,11 +1,10 @@
 const express = require( "express");
 const expressEjsLayouts = require( "express-ejs-layouts");
-const morgan = require( "morgan");
+const { morganMiddleware } = require('./libs/morgan');
 const logger = require( "./libs/logger.js");
 const cors = require( "cors");
 const stream = require( "./libs/rotate-stream.js");
 const { statusCodes } = require( "./utils/status-codes.utils.js");
-const debug = require( "debug");
 const expressSession = require( 'express-session');
 var SequelizeStore = require("connect-session-sequelize")(expressSession.Store);
 const sequelize = require( "./libs/db.index.js");
@@ -37,19 +36,11 @@ app.set("layout", "./layouts/full-width");
 app.set("view engine", "ejs");
 app.use(expressSession(sess));
 app.use(flash());
-
-// logger setup
-app.use(
-  morgan("combined", {
-    stream,
-    skip: (req, res) => {
-      return res.statusCode < 400;
-    },
-  })
-);
+app.use(morganMiddleware);
 
 app.locals.title = appTitle;
 app.locals.errors = flash;
+app.locals.baseUrlPrefix = '';
 app.get("", (req, res) => {
   res.redirect("/auth/login");
 });
@@ -66,4 +57,4 @@ app.use((err, req, res, next) => {
   res.status(statusCodes["Internal Server Error"]).json({message:'error'}).end();
 });
 
-app.listen(port, () => logger.info("App listening on port ", port));
+app.listen(port, () => logger.info(`App listening on port ${port}`, port));
